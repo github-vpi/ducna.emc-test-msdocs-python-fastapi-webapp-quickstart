@@ -22,7 +22,15 @@ async def favicon():
 
 @app.get('/test')
 async def test():
-    return HTTPResponse(status_code=200, content='Test page')
+    content = """<html>
+                    <head>
+                        <title>Test Page</title>
+                    </head>
+                    <body>
+                        <h1>Test Page</h1>
+                    </body>
+                  </html>"""
+    return HTMLResponse(content=content, status_code=200)
 
 @app.post('/hello', response_class=HTMLResponse)
 async def hello(request: Request, name: str = Form(...)):
