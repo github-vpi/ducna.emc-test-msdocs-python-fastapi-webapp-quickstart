@@ -20,6 +20,10 @@ async def favicon():
     file_path = './static/' + file_name
     return FileResponse(path=file_path, headers={'mimetype': 'image/vnd.microsoft.icon'})
 
+@app.get('/test')
+async def test():
+    return HTTPResponse(status_code=200, content='Test page')
+
 @app.post('/hello', response_class=HTMLResponse)
 async def hello(request: Request, name: str = Form(...)):
     if name:
