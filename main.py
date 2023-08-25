@@ -21,13 +21,14 @@ async def favicon():
     return FileResponse(path=file_path, headers={'mimetype': 'image/vnd.microsoft.icon'})
 
 @app.get('/test')
-async def test():
-    content = """<html>
+async def test(message: str = Query(None, alias="message")):
+    content = f"""<html>
                     <head>
                         <title>Test Page</title>
                     </head>
                     <body>
                         <h1>Test Page</h1>
+                        <p>Message: {message}</p>
                     </body>
                   </html>"""
     return HTMLResponse(content=content, status_code=200)
